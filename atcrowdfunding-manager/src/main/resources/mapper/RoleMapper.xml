@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.atcrowdfunding.dao.RoleMapper">
+
+    <select id="getRoleList" resultType="com.atguigu.atcrowdfunding.bean.Role">
+        SELECT * FROM t_role
+        <where>
+            <if test="name != null">
+                name LIKE concat('%', #{name}, '%')
+            </if>
+        </where>
+    </select>
+    <insert id="saveUserRole">
+        INSERT INTO  t_user_role
+        (user_id,role_id)
+        VALUES
+        <foreach collection="roleIds" item="roleId" separator="," >
+            (#{userId},#{roleId})
+        </foreach>
+
+    </insert>
+    <delete id="deleteUserRole" >
+        DELETE FROM  t_user_role
+        WHERE user_id = #{userId} AND  role_id IN
+        <foreach collection="roleIds" item="roleId" open="(" separator="," close=")">
+            #{roleId}
+        </foreach>
+    </delete>
+
+    <insert id="saveRole">
+        INSERT INTO t_role (name) VALUES (#{name})
+    </insert>
+
+    <update id="updateRole">
+        UPDATE t_role SET name = #{name} WHERE id = #{id}
+    </update>
+
+</mapper>

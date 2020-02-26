@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="atcrowdfunding-comment:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/atcrowdfunding_comment_jar</output-path>
+    <root id="archive" name="atcrowdfunding-comment.jar">
+      <element id="module-output" name="atcrowdfunding-comment" />
+    </root>
+  </artifact>
+</component>
